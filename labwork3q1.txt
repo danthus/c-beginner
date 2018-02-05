@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  float a,b,c;
+    cin>>a>>b>>c;
+    if(b*b > 4*a*c)
+        cout<<"There are two real number solutions"<<endl;
+    else if(b*b == 4*a*c)
+        cout<<"There is one real number solution"<<endl;
+    else
+        cout<<"There is no real number solution"<<endl;
+    
+    
+    
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int a,b,c,d,e,f,g,h,i,j;
+  cin>>a>>b>>c>>d>>e>>f>>g>>h>>i>>j;
+  
+  if(a>=0&&b>=0&&c>=0&&d>=0&&e>=0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c+d+e+f+g+h+i+j<<" "<<static_cast<float>(b+c+d+e+f+g+h+i+j)/10<<endl;
+  else if(a<0&&b>=0&&c>=0&&d>=0&&e>=0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a<<" "<<a/1<<" "<<b+c+d+e+f+g+h+i+j<<" "<<static_cast<float>(b+c+d+e+f+g+h+i+j)/9<<endl;
+  else if(a<0&&b<0&&c>=0&&d>=0&&e>=0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b<<" "<<static_cast<float>(a+b)/2<<" "<<c+d+e+f+g+h+i+j<<" "<<static_cast<float>(c+d+e+f+g+h+i+j)/8<<endl;
+  else if(a<0&&b<0&&c<0&&d>=0&&e>=0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c<<" "<<static_cast<float>(a+b+c)/3<<" "<<d+e+f+g+h+i+j<<" "<<static_cast<float>(d+e+f+g+h+i+j)/7<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e>=0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c+d<<" "<<static_cast<float>(a+b+c+d)/4<<" "<<e+f+g+h+i+j<<" "<<static_cast<float>(e+f+g+h+i+j)/6<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f>=0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c+d+e<<" "<<static_cast<float>(a+b+c+d+e)/5<<" "<<f+g+h+i+j<<" "<<static_cast<float>(f+g+h+i+j)/5<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f<0&&g>=0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c+d+e+f<<" "<<static_cast<float>(a+b+c+d+e+f)/6<<" "<<g+h+i+j<<" "<<static_cast<float>(g+h+i+j)/4<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f<0&&g<0&&h>=0&&i>=0&&j>=0)
+  cout<<a+b+c+d+e+f+g<<" "<<static_cast<float>(a+b+c+d+e+f+g)/7<<" "<<h+i+j<<" "<<static_cast<float>(h+i+j)/3<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f<0&&g<0&&h<0&&i>=0&&j>=0)
+  cout<<a+b+c+d+e+f+g+h<<" "<<static_cast<float>(a+b+c+d+e+f+g+h)/8<<" "<<i+j<<" "<<static_cast<float>(i+j)/2<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f<0&&g<0&&h<0&&i<0&&j>=0)
+  cout<<a+b+c+d+e+f+g+h+i<<" "<<static_cast<float>(a+b+c+d+e+f+g+h+i)/9<<" "<<j<<" "<<j/1<<endl;
+  else if(a<0&&b<0&&c<0&&d<0&&e<0&&f<0&&g<0&&h<0&&i<0&&j<0)
+  cout<<a+b+c+d+e+f+g+h+i+j<<" "<<static_cast<float>(a+b+c+d+e+f+g+h+i+j)/10<<endl;
+  
+  
+  cout<<a+b+c+d+e+f+g+h+i+j<<" "<<static_cast<float>(a+b+c+d+e+f+g+h+i+j)/10<<endl;
+  
+    return 0;
+}

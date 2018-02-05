@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int n;
+  cout<<"how many integars do you want ?";
+  cin>>n;
+  
+  int ps=0,pc=0,ns=0,nc=0;
+  int a;
+  
+  cout<<"now enter the numbers you want"<<endl;
+  
+  for(;n>0;n--)
+  {
+    cin>>a;
+    
+    if(a>0)
+    {
+        ps=ps+a;
+        pc++;
+    }
+    else if(a<0)
+    {
+        ns=ns+a;
+        nc++;
+    }
+
+  }
+    
+  cout<<"the sum of positive numbers = "<<ps<<endl;  
+  cout<<"the avg of positive numbers = "<<ps/pc<<endl;
+  cout<<"the sum of negative numbers = "<<ns<<endl;
+  cout<<"the avg of negative numbers = "<<ns/nc<<endl;
+  cout<<"the sum of all numbers = "<<ps+ns<<endl;
+  cout<<"the avg of all numbers = "<<(ps+ns)/10<<endl;
+    
+    
+}
