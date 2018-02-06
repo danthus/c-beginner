@@ -1,9 +1,0 @@
-#include <iostream>
-using namespace std;
-
-int_main()
-{
-  cout<<"hello world"<<endl;
-  
-  return 0;
-}  
