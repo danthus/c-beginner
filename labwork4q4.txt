@@ -30,11 +30,11 @@ int main()
   }
     
   cout<<"the sum of positive numbers = "<<ps<<endl;  
-  cout<<"the avg of positive numbers = "<<ps/pc<<endl;
+  cout<<"the avg of positive numbers = "<<static_cast<float>(ps)/pc<<endl;
   cout<<"the sum of negative numbers = "<<ns<<endl;
-  cout<<"the avg of negative numbers = "<<ns/nc<<endl;
+  cout<<"the avg of negative numbers = "<<static_cast<float>(ns)/nc<<endl;
   cout<<"the sum of all numbers = "<<ps+ns<<endl;
-  cout<<"the avg of all numbers = "<<(ps+ns)/10<<endl;
+  cout<<"the avg of all numbers = "<<(ps+ns)/10.0<<endl;
     
     
 }
