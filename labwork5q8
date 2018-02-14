@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    for(int y=1;y<=10;y++)
+    {
+        for(int z=1;z<=y-1;z++)
+            cout<<"  ";
+        for(int x=1;x<=21-2*y;x++)
+            cout<<"*"<<" ";
+        cout<<endl;
+    }
+    return 0;
+}
