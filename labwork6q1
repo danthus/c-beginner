@@ -1,0 +1,24 @@
+#include "math.h"
+#define _USE_MATH_DEFINES
+#include <iostream>
+using namespace std;
+
+int successivesum(int n)
+{
+    int sum=0;
+    for(int i=1;i<=n;i++)
+        sum=sum+i;
+    return sum;
+}
+        
+
+
+int main()
+{
+    cout<<"enter a integer : ";
+    int a;
+    cin>>a;
+    
+    cout<<"the sum of all integer before "<<a<<" = "<<successivesum(a)<<endl;
+    return 0;
+}
