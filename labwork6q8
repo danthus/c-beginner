@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void printreverse(int n)
+{
+    while(n>=10)
+    {
+        int temp=n%10;
+        cout<<temp<<" ";
+        n=n/10;
+    }
+    cout<<n<<" ";
+}
+
+int main()
+{
+    cout<<"pls enter a int number : ";
+    int n;
+    cin>>n;
+    printreverse(n);
+    return 0;
+}
