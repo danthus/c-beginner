@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void iscomposite(int n)
+{
+    int divisor=0;
+    
+    for(int i=1;i<=n;i++)
+    {
+        if(n%i==0)
+            divisor++;
+        else
+            continue;
+    }
+    
+    if(divisor==2)
+        cout<<"false, it's a prime"<<endl;
+    else
+        cout<<"true, it's a composite"<<endl;
+}
+
+int main()
+{
+    cout<<"enter a positive integer : ";
+    int n;
+    cin>>n;
+    cout<<"is it a composite number ?"<<endl;
+    iscomposite(n);
+    
+    return 0;
+}
