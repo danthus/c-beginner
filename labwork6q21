@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+void allincreasing(int n)
+{
+    srand(time(0));
+    
+    int count=0;
+    int a=rand();
+    cout<<a<<" ";
+    for(int i=n-1;i>=1;i--) //generate n random numbers
+    {
+        int b=rand();
+        cout<<b<<" ";
+        
+        if(a<=b)
+            count++;
+        
+        a=b;
+    }
+    
+    if(count==n-1)
+    {
+        cout<<endl;
+        cout<<"true, all increasing"<<endl;
+    }
+    else
+    {
+        cout<<endl;
+        cout<<"false, not all increasing"<<endl;
+    }
+}
+
+int main()
+{
+    cout<<"enter an int : ";
+    int n;
+    cin>>n;
+    allincreasing(n);
+    
+    return 0;
+}
