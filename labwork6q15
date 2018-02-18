@@ -1,0 +1,42 @@
+//alleven
+
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+void alleven(int n)
+{
+    srand(time(0));
+    int count=0;
+    
+    cout<<n<<" integers are :";
+    
+    for(int i=n;i>=1;i--)
+    {
+        int a=rand();
+        cout<<a<<" ";
+        if(a%2==0)
+        {
+            count++;
+            continue;
+        }
+        else;
+            continue;
+    }
+    cout<<endl;
+    if(count==n)
+        cout<<"True, all even."<<endl;
+    else
+        cout<<"False, not all even"<<endl;
+}
+
+int main()
+{
+    int n;
+    cout<<"enter an int : ";
+    cin>>n;
+    alleven(n);
+    
+    return 0;
+}
