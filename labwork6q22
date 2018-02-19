@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+char charincreasing(char n)
+{
+    char a=n+9;
+    if(n>='a'&&n<='q')
+        return a;
+    else
+        return 'a';
+}
+
+int main()
+{
+    cout<<"enter a char : ";
+    char a;
+    cin>>a;
+    cout<<charincreasing(a)<<endl;
+    
+    return 0;
+}
