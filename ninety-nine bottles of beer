@@ -1,0 +1,99 @@
+#include <iostream>
+using namespace std;
+
+void printdigit1(int n)
+{
+    if(n>=90)
+        cout<<"Ninety-";
+    else if(n>=80)
+        cout<<"Eighty-";
+    else if(n>=70)
+        cout<<"Seventy-";
+    else if(n>=60)
+        cout<<"Sixty-";
+    else if(n>=50)
+        cout<<"fifty-";
+    else if(n>=40)
+        cout<<"forty-";
+    else if(n>=30)
+        cout<<"thirty-";
+    else if(n>=20)
+        cout<<"twenty-";
+}
+
+void printdigit2(int n)
+{
+    if(n>=20)
+        n=n%10;
+    else if(n<20)
+        n=n;
+
+    if(n==19)
+            cout<<"nineteen";
+    if(n==18)
+            cout<<"eighteen";
+    if(n==17)
+            cout<<"seventeen";
+    if(n==16)
+            cout<<"sixteen";
+    if(n==15)
+            cout<<"fifteen";
+    if(n==14)
+            cout<<"fourteen";
+    if(n==13)
+            cout<<"thirteen";
+        if(n==12)
+            cout<<"twelve";
+        if(n==11)
+            cout<<"eleven";
+        if(n==10)
+            cout<<"ten";
+        if(n==9)
+            cout<<"nine";
+        if(n==8)
+            cout<<"eight";
+        if(n==7)
+            cout<<"seven";
+        if(n==6)
+         cout<<"six";
+        if(n==5)
+        cout<<"five";
+        if(n==4)
+            cout<<"four";
+        if(n==3)
+            cout<<"three";
+        if(n==2)
+            cout<<"two";
+        if(n==1)
+            cout<<"one";
+
+}
+
+int main()
+{
+    cout<<"enter a number : ";
+    int n;
+    cin>>n;
+    for(;n>=0;n--)
+    {
+        if(n==0)
+            cout<<"Zero bottles of beer on the wall"<<endl;
+        else
+        {
+            printdigit1(n);
+            printdigit2(n);
+            cout<<" bottles of beer on the wall,"<<endl;
+            cout<<endl;
+            printdigit1(n);
+            printdigit2(n);
+            cout<<" bottles of beer on the wall,"<<endl;
+            printdigit1(n);
+            printdigit2(n);
+            cout<<" bottles of beer,"<<endl;
+            cout<<"Take one down, pass it around"<<endl;
+        }
+        
+    }
+    
+    return 0;
+}
