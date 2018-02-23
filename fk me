@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+#include<string>
+
+string print(string s1,string s2)
+{
+    string s;
+    int length=s1.length();
+    for(int n=0;n<length;n++)
+    {
+        for(int i=0;i<length;i++)
+        {
+            if(s1[n]==s2[i])
+            {  
+                s=s+s1[n];
+                break;
+            }
+        }
+    }
+    return s;
+                
+}
+
+int main()
+{   
+    string s1,s2;
+    cin>>s1;
+    cin>>s2;
+    cout<<print(s1,s2)<<endl;
+    return 0;
+}
