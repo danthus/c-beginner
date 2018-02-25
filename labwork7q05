@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+int primecounter(int a[],int size)
+{
+    int notprime=0;
+    int neither=0;
+    
+    for(int i=0;i<size;i++)
+    {
+        if(a[i]==0||a[i]==1)
+            neither++;
+            
+        int which=0;
+        for(int n=2;n<a[i];n++)
+        {
+            if(a[i]%n==0)
+            {
+                which++;
+                notprime++;
+                break;
+            }
+        }
+        if(which==1)
+            continue;
+        else
+            cout<<a[i]<<" is the prime number"<<endl;
+    }
+    int prime=size-notprime-neither;
+                
+    return prime;
+}
+
+int main()
+{
+    srand(time(0));
+    int a[10];
+    for(int n=0;n<10;n++)
+    {   a[n]=rand();
+        cout<<a[n]<<endl;
+    }
+        
+    cout<<primecounter(a,10)<<" of them are prime"<<endl;
+    return 0;
+}
