@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+int evencounter(int a[],int size)
+{
+    int even=0;
+    for(int i=0;i<size;i++)
+        a[i]%2==0?even++:0;
+    return even;
+}
+
+int main()
+{
+    srand(time(0));
+    int a[10];
+    for(int n=0;n<10;n++)
+    {   a[n]=rand();
+        cout<<a[n]<<endl;
+    }
+        
+    cout<<evencounter(a,10)<<" of them are even"<<endl;
+    return 0;
+}
