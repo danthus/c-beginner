@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+int main()
+{
+    int a[10];
+    int even=0,odd=0;
+    for(int i=0;i<10;i++)
+    {
+        a[i]=rand();
+        a[i]%2==0?even++:odd++;
+    }
+    
+    cout<<even<<" of them are even"<<endl;
+    cout<<odd<<" of them are odd"<<endl;
+
+    return 0;
+}
