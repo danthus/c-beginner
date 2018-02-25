@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int vowelcounter(char a[],int size)
+{
+    int count=0;
+    char b[]={'a','e','i','o','u','A','E','I','O','U'};
+    for(int i=0;i<size;i++)
+    {
+        for(int n=0;n<10;n++)
+        {
+            if(a[i]==b[n])
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    char a[]={'p','i','n','e','a','p','p','l','e'};
+    cout<<vowelcounter(a,9)<<" of vowel counts"<<endl;
+        
+    return 0;
+}
