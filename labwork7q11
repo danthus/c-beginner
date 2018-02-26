@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <ctime>
+
+int main()
+{
+    srand(time(0));
+    int a[10];
+    int s=0;
+    for(int n=0;n<10;n++)
+    {
+        a[n]=rand()%21-10;
+        s=s+a[n];
+        cout<<a[n]<<" ";
+    }
+    cout<<endl;
+    cout<<"sum of all = "<<s<<endl;
+        
+    return 0;
+}
