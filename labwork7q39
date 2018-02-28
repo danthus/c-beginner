@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+using namespace std;
+
+bool isfound(string a,char b)
+{
+    int length=a.length();
+    for(int n=0;n<length;n++)
+        if(a[n]==b)
+            return true;
+            
+    return false;
+}
+
+int main()
+{
+    string a="cmpt130";
+    char b='z';
+    cout<<isfound(a,b)<<endl;  
+    return 0;
+}
