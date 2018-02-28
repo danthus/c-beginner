@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+using namespace std;
+
+string randomname()
+{
+    srand(time(0));
+    string a;
+    char a1=rand()%26+65;
+    a=a1;
+    
+    for(int n=0;n<9;n++)
+    {
+        char a2=rand()%26+97;
+        a=a+a2;
+    }
+    return a;
+}
+
+int main()
+{
+    cout<<randomname()<<endl;  
+    return 0;
+}
