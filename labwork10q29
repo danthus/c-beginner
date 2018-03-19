@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+void addEntry(int *&A, int &size,int newEntry)
+{
+    int H=size;
+    int *B=new int[size++];
+    for(int n=0;n<H;n++)
+        B[n]=A[n];
+    B[H]=newEntry;
+    delete []A;
+    A=B;
+}
+
+void deleteEntry(int *&A, int &size,int entryToDelete)
+{
+    int *B;
+    for(int n=0;n<size;n++)
+    {
+        if(A[n]==entryToDelete)
+        {
+            B=new int[size--];
+            for(int i=0;i<n;i++)
+                B[i]=A[i];
+            for(int j=n;j<size;j++)
+                B[j]=A[j+1];
+            delete []A;
+            A=B;
+        }
+    }
+    return;
+}
+
+int main ()
+{
+    int size=0;
+    int *X=new int[size];
+    addEntry(X,size,5);
+    cout<<X[0]<<endl;
+    addEntry(X,size,9);
+    cout<<X[0]<<endl;
+    cout<<X[1]<<endl;
+    deleteEntry(X,size,5);
+    cout<<X[0]<<endl;
+    cout<<X[1]<<endl;
+    return 0;
+}
