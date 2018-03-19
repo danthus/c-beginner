@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int* dotproduct(int *a,int *b,int size)
+{
+    int *c=new int[size];
+    for(int n=0;n<size;n++)
+        c[n]=a[n]*b[n];
+    return c;
+}
+
+int main()
+{
+    srand(time(0));
+    int size=5;
+    int *a=new int[size];
+    int *b=new int[size];
+    for(int n=0;n<size;n++)
+    {
+        a[n]=rand()%21;
+        b[n]=rand()%21;
+    }
+    for(int i=0;i<size;i++)
+        cout<<a[i]<<"\t";
+    cout<<endl;
+    for(int i=0;i<size;i++)
+        cout<<b[i]<<"\t";
+    cout<<endl;
+    int *x=dotproduct(a,b,size);
+    for(int i=0;i<size;i++)
+        cout<<x[i]<<"\t";
+    delete []a;
+    delete []b;
+    delete []x;
+    return 0;
+}
