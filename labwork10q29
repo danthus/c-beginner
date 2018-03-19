@@ -17,17 +17,25 @@ void addEntry(int *&A, int &size,int newEntry)
 void deleteEntry(int *&A, int &size,int entryToDelete)
 {
     int *B;
-    for(int n=0;n<size;n++)
+    if(size==1)
     {
-        if(A[n]==entryToDelete)
+        delete []A;
+        size--;
+    }
+    else
+    {
+        for(int n=0;n<size;n++)
         {
-            B=new int[size--];
-            for(int i=0;i<n;i++)
-                B[i]=A[i];
-            for(int j=n;j<size;j++)
-                B[j]=A[j+1];
-            delete []A;
-            A=B;
+            if(A[n]==entryToDelete)
+            {
+                B=new int[size--];
+                for(int i=0;i<n;i++)
+                    B[i]=A[i];
+                for(int j=n;j<size;j++)
+                    B[j]=A[j+1];
+                delete []A;
+                A=B;
+            }
         }
     }
     return;
