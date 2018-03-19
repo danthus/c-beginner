@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int row=3;
+    int column=4;
+    int **a=new int*[row];
+    for(int n=0;n<row;n++)
+        a[n]=new int[column];
+    for(int r=0;r<row;r++)
+    {
+        for(int c=0;c<column;c++)
+            a[r][c]=r*8+c*2+2;
+    }
+    for(int r=0;r<row;r++)
+    {
+        for(int c=0;c<column;c++)
+            cout<<a[r][c]<<"\t";
+        cout<<endl;
+    }
+    for(int n=0;n<row;n++)
+        delete []a[n];
+    delete []a;
+    
+    return 0;
+}
