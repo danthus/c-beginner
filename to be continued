@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int** creatematrix(int row, int column)
+{
+    int **a=new int*[row];
+    for(int n=0;n<row;n++)
+        a[n]=new int[column];
+    for(int r=0;r<row;r++)
+    {
+        for(int c=0;c<column;c++)
+            a[r][c]=rand()%101;
+    }
+    return a;
+}
+
+int** matrixdotproduct(int **a,int row,int **b,int column)
+{
+    if(row==column)
+    {
+        int **x=new int*[row];
+        for(int n=0;n<row;n++)
+            x[n]=new int[column];
+        for(int w=0;w<row;w++)
+        {
+            for(int i=0;i<row;i++)
+            {
+                for(int j=0;j<row;j++)
+                {
+                    x[w][i]=x[w][i]+a[j][i]*b[i][j];
+                }
+            }
+        }
+        return x;
+    }
+    else
+    {
+        cout<<"rows of first matrix does not match columns of second matrix";
+        return 0;
+    }
+}
+
+int main()
+{
+    int **a=creatematrix(5,6);
+    int **b=creatematrix(3,5);
+    return 0;
+}
