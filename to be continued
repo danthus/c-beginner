@@ -15,25 +15,38 @@ int** creatematrix(int row, int column)
     }
     return a;
 }
+void printmatrix(int **a,int row, int column)
+{
+	for(int n=0;n<column;n++)
+	{
+		for(int i=0;i<row;i++)
+			cout<<a[i][n]<<"\t";
+		cout<<endl;
+	}
+}
 
-int** matrixdotproduct(int **a,int row,int **b,int column)
+int** matrixdotproduct(int **m,int row,int **n,int column)
 {
     if(row==column)
     {
-        int **x=new int*[row];
+		int sum=0;
+        int **c=new int*[row];
         for(int n=0;n<row;n++)
-            x[n]=new int[column];
-        for(int w=0;w<row;w++)
-        {
-            for(int i=0;i<row;i++)
-            {
-                for(int j=0;j<row;j++)
-                {
-                    x[w][i]=x[w][i]+a[j][i]*b[i][j];
-                }
-            }
-        }
-        return x;
+            c[n]=new int[column];
+		
+		for(int x=0;x<row;x++)
+		{
+			for(int y=0;y<row;y++)
+			{
+				for(int z=0;z<row;z++)
+				{
+					sum=sum+(m[z][y])*(n[x][z]);
+				}
+				c[x][y]=sum;
+				sum=0;
+			}
+		}
+        return c;
     }
     else
     {
@@ -42,9 +55,30 @@ int** matrixdotproduct(int **a,int row,int **b,int column)
     }
 }
 
+void deletematrix(int **a,int row)
+{
+	for(int n=0;n<row;n++)
+		delete []a[n];
+	delete []a;
+}
+
 int main()
 {
-    int **a=creatematrix(5,6);
-    int **b=creatematrix(3,5);
+    int **m1=creatematrix(5,6);
+    int **m2=creatematrix(3,5);
+	printmatrix(m1,5,6);
+	cout<<endl;
+	printmatrix(m2,3,5);
+
+	int **m=matrixdotproduct(m1,5,m2,5);
+	cout<<endl;
+	printmatrix(m,5,5);
+	cout<<endl;
+
+	deletematrix(m1,5);
+	deletematrix(m2,3);
+	deletematrix(m,5);
+
+	system("Pause");
     return 0;
 }
