@@ -1,0 +1,96 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int** creatematrix(int row, int column)
+{
+    int **a=new int*[row];
+    for(int n=0;n<row;n++)
+        a[n]=new int[column];
+    for(int r=0;r<row;r++)
+    {
+        for(int c=0;c<column;c++)
+            a[r][c]=rand()%10+1;
+    }
+    return a;
+}
+void printmatrix(int **a,int row, int column)
+{
+    for(int n=0;n<row;n++)
+    {
+        for(int i=0;i<column;i++)
+            cout<<a[n][i]<<"\t";
+        cout<<endl;
+    }
+}
+
+int dotproduct(int *a,int *b,int size)
+{
+    int sum=0;
+    for(int n=0;n<size;n++)
+        sum=sum+a[n]*b[n];
+    return sum;
+}
+
+int** matrixdotproduct(int **a,int row1,int column1,int **b,int row2,int column2)
+{
+    if(column1==row2)
+    {
+        int **m=new int*[row1];
+        for(int n=0;n<row1;n++)
+            m[n]=new int[column2];
+        
+        for(int x=0;x<row1;x++)
+        {
+            for(int y=0;y<column2;y++)
+            {
+                int *temp=new int[row2];
+                for(int i=0;i<row2;i++)
+                    temp[i]=b[i][y];
+                
+                m[x][y]=dotproduct(a[x],temp,row2);
+                delete []temp;
+            }
+        }
+        return m;
+    }
+    else
+    {
+        cout<<"column of first matrix does not match row of second matrix, can not do product"<<endl;
+        return 0;
+    }
+}
+
+void deletematrix(int **a,int row)
+{
+    for(int n=0;n<row;n++)
+        delete []a[n];
+    delete []a;
+}
+
+int main()
+{
+    srand(time(0));
+    int row1=3;
+    int column1=4;
+    int row2=4;
+    int column2=5;
+    int **m1=creatematrix(row1,column1);
+    int **m2=creatematrix(row2,column2);
+    printmatrix(m1,row1,column1);
+    cout<<endl;
+    printmatrix(m2,row2,column2);
+    cout<<endl;
+    
+    int **m=matrixdotproduct(m1,row1,column1,m2,row2,column2);
+    printmatrix(m,row1,column2);
+    cout<<endl;
+    
+    deletematrix(m1,row1);
+    deletematrix(m2,row2);
+    deletematrix(m,row1);
+    
+    return 0;
+}
+
