@@ -1,0 +1,428 @@
+#include <iostream>
+using namespace std;
+
+int stringLength(const char* s)
+{
+    //returns the number of printable characters in s
+    
+    int index=0;
+    while(s[index]!='\0')
+    {
+        index++;
+    }
+    return index;
+}
+
+int countChars(const char* s, const char ch)
+{
+    //returns the number of times the character ch is found in s
+    int count=0;
+    for(int n=0;n<stringLength(s);n++)
+    {
+        if(s[n]==ch)
+            count++;
+    }
+    return count;
+}
+
+int findChar(const char* s, const char ch, const int startIndex, const int lastIndex)
+{
+    /* returns the first index where the character ch is found in s starting from startIndex
+     (inclusive) upto lastIndex (exclusive)
+     If ch is not found in s in the interval, it returns -1
+     This function must first validate both the startIndex and lastIndex.
+     That is, if lastIndex > stringLength(s) or startIndex < 0 it must return -1 */
+    
+    if(startIndex<lastIndex)
+    {
+        for(int n=startIndex;n<lastIndex;n++)
+        {
+            if(s[n]==ch)
+                return n;
+        }
+        
+    }
+    return -1;
+}
+
+void rotateString(char* s, const int r)
+{
+    /* Rotate the characters of s by r units
+     If r > 0, rotate the characters of s to the left
+     If r < 0, rotate the characters of s to the right
+     Please note the value of r can be any integer even larger than the length of s */
+    
+    int len=stringLength(s);
+    int rotate=r%len;
+    if(rotate>0)
+    {
+        for(int i=rotate;i>0;i--)
+        {
+            char temp=s[0];
+            int n=0;
+            for(;n<len-1;n++)
+            {
+                s[n]=s[n+1];
+            }
+            s[n]=temp;
+        }
+    }
+    else if(rotate<0)
+    {
+        for(int i=rotate;i<0;i++)
+        {
+            char temp=s[len-1];
+            int n=len-1;
+            for(;n>0;n--)
+            {
+                s[n]=s[n-1];
+            }
+            s[0]=temp;
+        }
+    }
+        
+}
+
+void append(char*& s, const char ch)
+{
+    /* Appends the character ch to the c-string s.
+     That is ch is added to the end of s
+     The parameter s is assumed to be a dynamic array (NOT a static one) */
+    
+    int len=stringLength(s);
+    char *temp=new char[len+2];
+    for(int n=0;n<len;n++)
+    {
+        temp[n]=s[n];
+    }
+    temp[len]=ch;
+    temp[len+1]='\0';
+    delete []s;
+    s=temp;
+}
+
+void append (char *&s1, const char *s2)
+{
+    /* Appends all the characters of s2 to s1
+    The parameter s1 is assumed to be a dynamic array (NOT a static one) */
+    
+    for(int n=0;n<stringLength(s2);n++)
+    {
+        append(s1,s2[n]);
+    }
+    
+}
+
+void removeAll (char *&s, const char ch)
+{
+    /* remove all the occurences of the character ch from the c-string s
+    The parameter s is assumed to be a dynamic array (NOT a static one) */
+    
+    int len=stringLength(s);
+    int count=0;
+    for(int n=0;n<len;n++)
+    {
+        if(s[n]==ch)
+            count++;
+    }
+    
+    char *temp=new char[len-count+1];
+    int i=0;
+    for(int n=0;n<len-count;n++)
+    {
+        while(i<len)
+        {
+            if(s[i]==ch)
+            {
+                i++;
+                continue;
+            }
+            
+            temp[n]=s[i];
+            i++;
+            break;
+            
+        }
+    }
+    temp[len-count]='\0';
+    delete []s;
+    s=temp;
+}
+
+char* zigzagMerge (const char *s1, const char *s2)
+{
+    /* create and return a new c-string by merging (putting in one) s1 and s2 in zigzag form. That is
+        first character of the new c-string is the first character of s1
+        second character of the new c-string is the first character of s2
+        third character of the new c-string is the second character of s1
+        fourth character of the new c-string is the second character of s2
+        fifth character of the new c-string is the third character of s1
+        sixth character of the new c-string is the third character of s2
+        etc
+     When either s1 or s2 reaches to its end, the remaining characters of the other are
+     appended to new c-string
+     Example, zigzagMerge of "abc" and "defgh" will be "adbecfgh" */
+    
+    int len1=stringLength(s1);
+    int len2=stringLength(s2);
+    char *sum=new char[len1+len2+1];
+    
+    int n=0;
+    for(;;n++)
+    {
+        if(n%2==0)
+        {
+            if(s1[n/2]=='\0')
+            {
+                // I realized later I can use append fuction here, but..whatever.
+                
+                for(int i=n/2;i<len2;i++)
+                {
+                    sum[n]=s2[i];
+                    n++;
+                }
+                break;
+            }
+            
+            sum[n]=s1[n/2];
+        }
+        else
+        {
+            if(s2[n/2]=='\0')
+            {
+                for(int j=n/2+1;j<len1;j++)
+                {
+                    sum[n]=s1[j];
+                    n++;
+                }
+                break;
+            }
+            
+            sum[n]=s2[n/2];
+        }
+    }
+    sum[len1+len2]='\0';
+    
+    return sum;
+}
+
+bool isAnagram (const char *s1, const char *s2)
+{
+    /* returns true if s1 and s2 contain same distinct characters apearing same number of times in both s1 and s2
+     otherwise returns false
+     That is, this function returns true if s1 and s2 are permutations (re-arrangements) of same characters */
+    
+    int len1=stringLength(s1);
+    int len2=stringLength(s2);
+    
+    char *temp=new char[len2+1];
+    for(int n=0;n<len2;n++)
+    {
+        temp[n]=s2[n];
+    }
+    temp[len2]='\0';
+    
+    int count=0;
+    for(int n=0;n<len1;n++)
+    {
+        for(int i=0;i<len2;i++)
+        {
+            if(s1[n]==temp[i])
+            {
+                count++;
+                temp[i]='\0';
+                break;
+            }
+        }
+    }
+    if(count==len1&&len1==len2)
+        return true;
+    else
+        return false;
+}
+
+bool isSubstring (const char *s1, const char *s2)
+{
+    /* returns true is s1 is a substring of s2 otherwise returns false
+     Definition: s1 is a substring of s2 if s1 is found in s2.
+     That is all characters of s1 are found TOGETHER in s2 in the SAME ORDER as they appear in s1
+     Example "set" is a substring of "massachussettes" But "ets" is not substring of "massachussettes" */
+    
+    int len1=stringLength(s1);
+    int len2=stringLength(s2);
+    int count=0;
+    for(int n=0;n<len2;n++)
+    {
+        for(int i=0;i<len1;i++)
+        {
+            if(s2[n]==s1[i])
+            {
+                count++;
+                n++;
+                if(count==len1)
+                    return true;
+            }
+            else
+            {
+                count=0;
+                break;
+            }
+        }
+    }
+    return false;
+}
+
+int countWords (const char *s)
+{
+    /* Given a c-string that contains some words separated by spaces,
+     return the number of words in the c-string.
+     In this case, a word means some characters with no space in between.
+     Example: If the c-string parameter is "What a nice problem".
+     Then you see that there are FOUR words in this c-string, namely
+     1. What 2. a 3. nice 4. problem
+     Your function then must return 4
+     
+     For simplicity,
+     1. Assume that there are no spaces at the beginning or at the end of the c-string
+     2. But a word may be separated from another word by more than one space
+     3. Assume the parameter does not contain any punctuation marks such as full stop or comma. */
+    
+    int count=0;
+    for(int n=0;n<stringLength(s);n++)
+    {
+        if((s[n]>='a'&&s[n]<='z')||(s[n]>='A'&&s[n]<='Z'))
+        {
+            count++;
+            n++;
+            for(;n<stringLength(s);n++)
+            {
+                if(s[n]==' ')
+                    break;
+            }
+        }
+    }
+    return count;
+}
+
+int main ()
+{
+    /* This main program is designed to test the functions you need to implement.
+     You should NOT remove any line of code from this main program.
+     But you may add more test code in the main program if you like. */
+    
+    //Test stringLength function
+    cout << endl;
+    char s1[] = "massachussettes";
+    cout << s1 << " has " << stringLength (s1) << " characters" << endl;
+    
+    //Test countChars function
+    cout << endl;
+    char ch = 's';
+    int c = countChars (s1, ch);
+    cout << ch << " appears " << c << " times in " << s1 << endl;
+    
+    //Test findChar function
+    cout << endl;
+    int index = findChar (s1, ch, 10, 14);
+    if (index == -1)
+        cout << ch << " is not found in " << s1 << " between indexes [10, 14)" <<
+        endl;
+    else
+        cout << ch << " is found at index " << index << " in " << s1 << " between indexes [10, 14)" << endl;
+    
+    //Test rotateString function
+    cout << endl;
+    char temp1[] = "massachussettes";
+    rotateString (temp1, 2);
+    cout << s1 << " rotated 2 units to the left becomes " << temp1 << endl;
+    char temp2[] = "massachussettes";
+    rotateString (temp2, -19);
+    cout << s1 << " rotated 19 units to the right becomes " << temp2 << endl;
+    
+    //Test append function (appending a character to c-string)
+    cout << endl;
+    char *s2 = new char[1];
+    s2[0] = '\0';
+    cout << "Given the c-string " << s2 << endl;
+    ch = 'a';
+    append (s2, ch);
+    cout << "\tAppending " << ch << " results to " << s2 << endl;
+    ch = 'b';
+    append (s2, ch);
+    cout << "\tAppending " << ch << " results to " << s2 << endl;
+    
+    //Test append function (appending a c-string to a c-string)
+    cout << endl;
+    cout << "Appending " << s1 << " to " << s2 << ", we get ";
+    append (s2, s1);
+    cout << s2 << endl;
+    
+    //Test removeAll function
+    cout << endl;
+    ch = 'e';
+    cout << "Removing all occurences of " << ch << " from " << s2 <<
+    ", we get ";
+    removeAll (s2, ch);
+    cout << s2 << endl;
+    ch = 't';
+    cout << "Removing all occurences of " << ch << " from " << s2 <<
+    ", we get ";
+    removeAll (s2, ch);
+    cout << s2 << endl;
+    ch = 's';
+    cout << "Removing all occurences of " << ch << " from " << s2 <<
+    ", we get ";
+    removeAll (s2, ch);
+    cout << s2 << endl;
+    
+    //Test zigzagMerge function
+    cout << endl;
+    char *s3 = zigzagMerge (s1, s2);
+    cout << "The zigzag merge of " << s1 << " and " << s2 << " is " << s3 << endl;
+    
+    //Test isAnagram function
+    cout << endl;
+    char s4[] = "htsemsaesuatscs";
+    bool flag = isAnagram (s1, s4);
+    if (flag)
+        cout << s1 << " and " << s4 << " are anagrams" << endl;
+    else
+        cout << s1 << " and " << s4 << " are not anagrams" << endl;
+    
+    //Test isSubstring function
+    cout << endl;
+    flag = isSubstring (s1, s4);
+    if (flag)
+        cout << s1 << " is a substring of " << s4 << endl;
+    else
+        cout << s1 << " is not a substring of " << s4 << endl;
+    char s5[] = "abort";
+    char s6[] = "abcabodefaborhuhabortabunny";
+    flag = isSubstring (s5, s6);
+    if (flag)
+        cout << s5 << " is a substring of " << s6 << endl;
+    else
+        cout << s5 << " is not a substring of " << s6 << endl;
+    
+    //Test countWords function
+    cout << endl;
+    char s7[] = "";
+    c = countWords (s7);
+    cout << "There are " << c << " words in " << s7 << endl;
+    char s8[] = "Test";
+    c = countWords (s8);
+    cout << "There are " << c << " words in " << s8 << endl;
+    char s9[] = "Nice one";
+    c = countWords (s9);
+    cout << "There are " << c << " words in " << s9 << endl;
+    char s10[] =
+    "This is a nice assignment and hopefully an interesting as well";
+    c = countWords (s10);
+    cout << "There are " << c << " words in " << s10 << endl;
+    
+    //Delete dynamically allocated memories
+    delete[]s2;
+    delete[]s3;
+    system ("Pause");
+    return 0;
+}
