@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+    srand(time(0));
+    
+    int size;
+    cout<<"enter size ";
+    cin>>size;
+    
+    int *a=new int[size];
+    for(int n=0;n<size;n++)
+    {
+        while(true)
+        {
+            //f(n)=n^2-n=O(n^2)??
+            int count=0;
+            a[n]=rand()%size+1;
+            for(int i=0;i<n;i++)
+            {
+                if(a[n]!=a[i])
+                    count++;
+            }
+            if(count==n)
+                break;
+        }
+    }
+    
+    for(int j=0;j<size;j++)
+        cout<<a[j]<<" ";
+        
+    delete []a;
+
+    return 0;
+}
